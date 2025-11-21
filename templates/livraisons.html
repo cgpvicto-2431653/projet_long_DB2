@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html lang="fr"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Bienvenue à la Pizzeria</title> 
+    <link rel="stylesheet" href="/static/style.css">
+</head> 
+<body> 
+    <h2>Livraisons en attente</h2>
+
+<table border="1">
+    <tr>
+        <th>ID Livraison</th>
+        <th>Client</th>
+        <th>Adresse</th>
+        <th>Action</th>
+    </tr>
+
+    {% for l in livraisons %}
+    <tr>
+        <td>{{ l.id }}</td>
+        <td>{{ l.nom }}</td>
+        <td>{{ l.adresse }}</td>
+        <td>
+            <a href="/complete/{{ l.id_commande }}">Compléter</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<div>
+    <a href="/">Retour</a>
+</div>
+</body> 
+</html>
