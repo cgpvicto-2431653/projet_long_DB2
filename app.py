@@ -6,7 +6,9 @@ import os
 load_dotenv()
 app = Flask(__name__)
 
+
 def get_db():
+# salut c'est une fonction pour ce connecter a la bd
     return mysql.connector.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
@@ -15,6 +17,7 @@ def get_db():
     )
 
 @app.route("/")
+#c'est la route de la page principale
 def index():
     return render_template("index.html")
 
@@ -41,6 +44,7 @@ def api_client(id):
 
 
 @app.route("/commande", methods=["GET", "POST"])
+#c'est la route de la page commande
 def commande():
     conn = get_db()
     cursor = conn.cursor(dictionary=True)
@@ -121,6 +125,7 @@ def commande():
 
 
 @app.route("/resume")
+#c'est la route de la page resume
 def resume():
     id_commande = request.args.get("id")
 
@@ -164,6 +169,7 @@ def resume():
 
 
 @app.route("/livraisons")
+#c'est la route de la page livraisons
 def livraisons():
     conn = get_db()
     cursor = conn.cursor(dictionary=True)
@@ -186,6 +192,7 @@ def livraisons():
 
 
 @app.route("/complete/<int:id_commande>")
+#c'est pour supprimer une commande si elle est completer
 def complete(id_commande):
     conn = get_db()
     cursor = conn.cursor()
