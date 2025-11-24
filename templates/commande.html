@@ -13,15 +13,23 @@
 <form method="POST">
 
     <h3>Client</h3>
+    <h3>Connexion client (optionnel)</h3>
 
+    <label>ID Client :</label><br>
+    <div>
+        <input type="number" id="client_id" name="client_id">
+        <button type="button" onclick="chargerClient()">Charger</button>
+    </div>
+    <br><br>
+    
     <label>Nom :</label><br>
-    <input type="text" name="nom" required><br>
+    <input type="text" name="nom" id="nom"><br>
 
     <label>Téléphone :</label><br>
-    <input type="text" name="telephone" required><br>
+    <input type="text" name="telephone" id="telephone"><br>
 
     <label>Adresse :</label><br>
-    <input type="text" name="adresse" required><br>
+    <input type="text" name="adresse" id="adresse"><br>
 
     <h3>Pizza</h3>
 
@@ -55,17 +63,40 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const checkboxes = document.querySelectorAll("input[name='garnitures']");
+
     checkboxes.forEach(cb => {
         cb.addEventListener("change", function () {
             let checked = document.querySelectorAll("input[name='garnitures']:checked").length;
+
             if (checked > 4) {
-                alert("Maximum 4 garnitures !");
-                this.checked = false;
+                this.checked = false; 
             }
         });
     });
 });
+async function chargerClient() {
+    const id = document.getElementById("client_id").value;
+
+    if (!id) {
+        alert("Entre un ID client");
+        return;
+    }
+
+    const res = await fetch(`/api/client/${id}`);
+    const data = await res.json();
+
+    if (data.error) {
+        alert("Client introuvable");
+        return;
+    }
+
+    document.getElementById("nom").value = data.nom;
+    document.getElementById("telephone").value = data.telephone;
+    document.getElementById("adresse").value = data.adresse;
+}
 </script>
+
+
 
 </body>
 </html>

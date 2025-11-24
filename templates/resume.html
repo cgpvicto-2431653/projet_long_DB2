@@ -1,13 +1,39 @@
-<!DOCTYPE html> 
-<html lang="fr"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Bienvenue à la Pizzeria</title> 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résumé de la commande</title>
     <link rel="stylesheet" href="/static/style.css">
-</head> 
-<body> 
-    <h2>Commande envoyée!</h2>
+</head>
+<body>
+
+<h1>Résumé de votre commande</h1>
+
+<h2>Client</h2>
+<p><strong>Nom :</strong> {{ commande.nom }}</p>
+<p><strong>Téléphone :</strong> {{ commande.telephone }}</p>
+<p><strong>Adresse :</strong> {{ commande.adresse }}</p>
+<p><strong>Date :</strong> {{ commande.date_commande }}</p>
+
+<hr>
+
+<h2>Pizza</h2>
+<p><strong>Crôute :</strong> {{ pizza.croute }}</p>
+<p><strong>Sauce :</strong> {{ pizza.sauce }}</p>
+<p><strong>Taille :</strong> {{ pizza.taille }}</p>
+<p><strong>Prix :</strong> {{ pizza.prix }} $</p>
+
+<h3>Garnitures :</h3>
+<ul>
+    {% for g in garnitures %}
+        <li>{{ g.nom }}</li>
+    {% endfor %}
+</ul>
+<div>
     <a href="/">Retour à l'accueil</a>
-</body> 
+</div>
+
+
+</body>
 </html>
