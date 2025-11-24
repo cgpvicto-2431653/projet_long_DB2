@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS pizzeria;
-USE pizzeria;
+CREATE DATABASE IF NOT EXISTS database_pizza;
+USE database_pizza;
 
 CREATE TABLE IF NOT EXISTS clients (
     id INT AUTO_INCREMENT PRIMARY KEY,
